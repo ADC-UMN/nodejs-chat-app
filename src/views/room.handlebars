@@ -1,0 +1,138 @@
+<style>
+	#messages {
+		overflow-y: scroll;
+		overflow: auto;
+		height: 70vh;
+	}
+
+	.row {
+		flex-direction: row-reverse;
+	}
+
+	.username {
+		margin: 5px;
+		margin-top: 12px;
+	}
+
+	.content {
+		margin-top: 4px;
+		margin-bottom: 4px;
+	}
+
+	.message {
+		border-radius: 5px;
+		margin: 5px;
+	}
+
+	.usernamemine {
+		margin: 5px;
+		margin-top: 12px;
+		text-align: right;
+	}
+
+	.mine {
+		background-color: #5fc9f8;
+		text-align: right;
+	}
+
+	.yours {
+		background-color: #eee;
+	}
+</style>
+<a href="/home" class="btn btn-light mb-2">Home</a>
+<h1>Room: {{#room.users}} {{#unless @first}} - {{/unless}} {{this}} {{/room.users}}</h1>
+<p style="color: grey"><em>Room ID: {{room.id}}</em></p>
+<div id="messages" class="container"></div>
+<div class="container" style="margin-top: 30px">
+	<form id="input">
+		<div class="input-group">
+			<input id="messageInput" type="text" class="form-control" placeholder="Text..." />
+			<button type="submit" class="btn btn-outline-primary" id="submit-btn">Send</button>
+		</div>
+	</form>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+	const username = "{{user}}";
+	const messageContainer = document.getElementById("messages");
+
+	const form = document.getElementById("input");
+	const messsageInput = document.getElementById("messageInput");
+	const submitButton = document.getElementById("submit-btn");
+
+	let lastUser = null;
+	let lastMessageId = null;
+
+	const postMessage = async (text) => {
+		try {
+			let response = await axios.post("/api/room/{{room.id}}/messages", {
+				content: text,
+			});
+			return response.data;
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const getMessages = async () => {
+		try {
+			let response = await axios.get("/api/room/{{room.id}}/messages", {
+				params: {
+					after: lastMessageId,
+				},
+			});
+			return response.data;
+		} catch (error) {
+			if (error.response.status == 401) {
+				window.location.href = "/";
+			} else {
+				console.error(error);
+			}
+		}
+	};
+
+	const insertMessage = (message) => {
+		if (lastUser != message.user) {
+			// Insert a username field
+			lastUser = message.user;
+			messageContainer.innerHTML += `<p class="${message.user == username ? "usernamemine" : "username"}">${
+				message.user
+			}</p>`;
+		}
+		messageContainer.innerHTML += `<div class="row message ${
+			message.user == username ? "mine" : "yours"
+		}"><p class="content">${message.content}</p></div>`;
+	};
+
+	submitButton.onclick = async (e) => {
+		e.preventDefault();
+		let messageContent = messsageInput.value;
+		if (messageContent.length < 1) {
+			return;
+		}
+		messsageInput.value = "";
+		let message = await postMessage(messageContent);
+		if (message) {
+			insertMessage(message);
+		}
+	};
+
+	async function pollMessages() {
+		console.log("Polling For New Messages");
+		let messages = await getMessages();
+		if (messages == undefined || messages.length < 1) {
+			return;
+		}
+		lastMessageId = messages[messages.length - 1].messageID;
+		for (let i = 0; i < messages.length; i++) {
+			insertMessage(messages[i]);
+		}
+	}
+
+	(async () => {
+		await pollMessages();
+		setInterval(async () => {
+			await pollMessages();
+		}, 1000);
+	})();
+</script>

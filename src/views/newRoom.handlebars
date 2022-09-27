@@ -1,0 +1,37 @@
+<a href="/home" class="btn btn-light mb-2">Home</a>
+<h1>Create a new Room</h1>
+<form id="form">
+	<label class="mb-2">Select who to create the room with</label>
+	{{#each users}}
+	<div class="form-check">
+		<input class="form-check-input" type="checkbox" value="{{this}}" id="{{this}}" name="users" />
+		<label class="form-check-label" for="{{this}}"> {{this}} </label>
+	</div>
+	{{/each}}
+	<button type="submit" class="btn btn-outline-primary mt-4" id="submit-btn">Create Room</button>
+</form>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+	const form = document.getElementById("input");
+	const submitButton = document.getElementById("submit-btn");
+
+	submitButton.onclick = async (e) => {
+		e.preventDefault();
+		const checkedBoxes = document.querySelectorAll("input[name=users]:checked");
+		var selectedUsers = [];
+		for (let i = 0; i < checkedBoxes.length; i++) {
+			selectedUsers.push(checkedBoxes[i].value);
+		}
+		try {
+			let response = await axios.post("/api/newRoom", {
+				selectedUsers: selectedUsers,
+			});
+			if (response.status == 200) {
+				let roomID = response.data.room;
+				window.location.href = `/room/${roomID}`;
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+</script>

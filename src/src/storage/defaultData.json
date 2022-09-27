@@ -1,0 +1,64 @@
+{
+	"users": {
+		"Tommy": {
+			"username": "Tommy",
+			"password": "123456789!",
+			"rooms": ["1", "3"]
+		},
+		"Billy": {
+			"username": "Billy",
+			"password": "Password12",
+			"rooms": ["1", "2"]
+		},
+		"Samantha": {
+			"username": "Samantha",
+			"password": "BillySux",
+			"rooms": ["2", "3"]
+		}
+	},
+	"rooms": {
+		"1": {
+			"id": "1",
+			"users": ["Tommy", "Billy"],
+			"messages": [
+				{
+					"messageID": "1",
+					"user": "Tommy",
+					"content": "Hi Billy!"
+				},
+				{
+					"messageID": "1",
+					"user": "Billy",
+					"content": "Hi Tommy!"
+				},
+				{
+					"messageID": "1",
+					"user": "Tommy",
+					"content": "This is way better than Messenger!"
+				}
+			]
+		},
+		"2": {
+			"id": "2",
+			"users": ["Billy", "Samantha"],
+			"messages": [
+				{
+					"messageID": "1",
+					"user": "Samantha",
+					"content": "Sup"
+				}
+			]
+		},
+		"3": {
+			"id": "3",
+			"users": ["Tommy", "Samantha"],
+			"messages": [
+				{
+					"messageID": "1",
+					"user": "Tommy",
+					"content": "Server running at http://localhost:4000"
+				}
+			]
+		}
+	}
+}

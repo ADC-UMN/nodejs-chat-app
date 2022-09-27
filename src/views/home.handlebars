@@ -1,0 +1,19 @@
+<button id="sign-out" class="btn btn-light mb-2">Sign Out</button>
+<h1>Choose a room, or start a new one</h1>
+<div class="list-group">
+	<a href="/newRoom" class="list-group-item list-group-item-action mt-2">New Room</a>
+	{{#rooms}}
+	<a href="/room/{{this.id}}" class="list-group-item list-group-item-action active mt-2"
+		>{{#this.users}} {{#unless @first}} - {{/unless}} {{this}} {{/this.users}}
+	</a>
+	{{/rooms}}
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+	const button = document.getElementById("sign-out");
+	button.onclick = async (e) => {
+		e.preventDefault();
+		await axios.get("/api/auth/signOut");
+		window.location.href = "/";
+	};
+</script>
