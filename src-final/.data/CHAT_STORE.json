@@ -1,1 +1,73 @@
-{"users":{"Tommy":{"username":"Tommy","password":"123456789!","rooms":["1","3","8d0fe1f9-8a4d-465c-bd0b-b4da34474934"]},"Billy":{"username":"Billy","password":"Password12","rooms":["1","2"]},"Samantha":{"username":"Samantha","password":"BillySux","rooms":["2","3","8d0fe1f9-8a4d-465c-bd0b-b4da34474934"]},"khantheman@winterfam.org":{"username":"khantheman@winterfam.org","password":"BigBrother20020#","rooms":["1","8d0fe1f9-8a4d-465c-bd0b-b4da34474934"]}},"rooms":{"1":{"id":"1","users":["Tommy","Billy","khantheman@winterfam.org"],"messages":[{"messageID":"1","user":"Tommy","content":"Hi Billy!"},{"messageID":"1","user":"Billy","content":"Hi Tommy!"},{"messageID":"1","user":"Tommy","content":"This is way better than Messenger!"},{"messageID":"09f501e8-72ea-4571-ad78-1c549e31c3ed","user":"khantheman@winterfam.org","content":"Hello :)"},{"messageID":"a2edb57a-b3db-4c5b-83fe-36010935958c","user":"khantheman@winterfam.org","content":"Lets go!"},{"messageID":"9d9fcd3a-c87c-42e0-907d-58b08249db60","user":"khantheman@winterfam.org","content":"New Message"}],"_locals":{}},"2":{"id":"2","users":["Billy","Samantha"],"messages":[{"messageID":"1","user":"Samantha","content":"Sup"}]},"3":{"id":"3","users":["Tommy","Samantha"],"messages":[{"messageID":"1","user":"Tommy","content":"Server running at http://localhost:4000"}]},"8d0fe1f9-8a4d-465c-bd0b-b4da34474934":{"id":"8d0fe1f9-8a4d-465c-bd0b-b4da34474934","users":["Samantha","Tommy","khantheman@winterfam.org"],"messages":[{"messageID":"316e8c1c-9433-42ed-ba42-b0bf7a84f635","user":"khantheman@winterfam.org","content":"Hi guys!"},{"messageID":"0add531c-27d0-4981-a1e5-06a3f2118664","user":"khantheman@winterfam.org","content":"How's it going?"}]}}}
+{
+	"users": {
+		"Tommy": {
+			"username": "Tommy",
+			"password": "123456789!",
+			"rooms": ["1", "3", "8d0fe1f9-8a4d-465c-bd0b-b4da34474934"]
+		},
+		"Billy": { "username": "Billy", "password": "Password12", "rooms": ["1", "2"] },
+		"Samantha": {
+			"username": "Samantha",
+			"password": "BillySux",
+			"rooms": ["2", "3", "8d0fe1f9-8a4d-465c-bd0b-b4da34474934"]
+		},
+		"Khan": {
+			"username": "Khan",
+			"password": "Password12#",
+			"rooms": ["1", "8d0fe1f9-8a4d-465c-bd0b-b4da34474934"]
+		}
+	},
+	"rooms": {
+		"1": {
+			"id": "1",
+			"users": ["Tommy", "Billy", "Khan"],
+			"messages": [
+				{ "messageID": "1", "user": "Tommy", "content": "Hi Billy!" },
+				{ "messageID": "1", "user": "Billy", "content": "Hi Tommy!" },
+				{ "messageID": "1", "user": "Tommy", "content": "This is way better than Messenger!" },
+				{
+					"messageID": "09f501e8-72ea-4571-ad78-1c549e31c3ed",
+					"user": "Khan",
+					"content": "Hello :)"
+				},
+				{
+					"messageID": "a2edb57a-b3db-4c5b-83fe-36010935958c",
+					"user": "Khan",
+					"content": "Lets go!"
+				},
+				{
+					"messageID": "9d9fcd3a-c87c-42e0-907d-58b08249db60",
+					"user": "Khan",
+					"content": "New Message"
+				}
+			],
+			"_locals": {}
+		},
+		"2": {
+			"id": "2",
+			"users": ["Billy", "Samantha"],
+			"messages": [{ "messageID": "1", "user": "Samantha", "content": "Sup" }]
+		},
+		"3": {
+			"id": "3",
+			"users": ["Tommy", "Samantha"],
+			"messages": [{ "messageID": "1", "user": "Tommy", "content": "Server running at http://localhost:4000" }]
+		},
+		"8d0fe1f9-8a4d-465c-bd0b-b4da34474934": {
+			"id": "8d0fe1f9-8a4d-465c-bd0b-b4da34474934",
+			"users": ["Samantha", "Tommy", "Khan"],
+			"messages": [
+				{
+					"messageID": "316e8c1c-9433-42ed-ba42-b0bf7a84f635",
+					"user": "Khan",
+					"content": "Hi guys!"
+				},
+				{
+					"messageID": "0add531c-27d0-4981-a1e5-06a3f2118664",
+					"user": "Khan",
+					"content": "How's it going?"
+				}
+			]
+		}
+	}
+}
